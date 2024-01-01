@@ -9,8 +9,26 @@
 
 const mealsElement = document.getElementById("meals");
 const favoritesElement = document.querySelector(".favorites");
+const searchBtn = document.querySelector("#search");
+const searchTerm = document.querySelector("#search-term");
 getRandomMeal();
 updateFavoriteMeals();
+
+searchBtn.addEventListener("click", async ()=>{
+    
+    const searchWord = searchTerm.value;
+    
+    const meals = await getMealsBySearch(searchWord);
+
+    mealsElement.innerHTML = "";
+    if(meals)
+    {
+        for(let i = 0; i<meals.length; i++)
+        {
+            addMeal(meals[i]);
+        }
+    }
+})
 
 async function getRandomMeal() 
 {
@@ -115,4 +133,14 @@ function addMealToFavorites(mealData)
         updateFavoriteMeals();
     })
     favoritesElement.appendChild(favoriteMeal);
+}
+
+async function getMealsBySearch(term)
+{
+    const resp = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=" + term)
+    const respData = await resp.json(); //converts the json data 
+    const meals = respData.meals;
+
+    console.log(meals);
+    return meals;
 }
