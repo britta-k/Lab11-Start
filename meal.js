@@ -37,16 +37,18 @@ async function getRandomMeal()
     const randomMeal = randomData.meals[0];
 
     mealsElement.innerHTML = "";
-    addMeal(randomMeal);
+    addMeal(randomMeal,true);
 }
 
-function addMeal(mealData) 
+function addMeal(mealData, random = false) 
 {
     const meal = document.createElement("div");
     meal.classList.add("meal");
 
     meal.innerHTML = `<div class="meal-header">
-                        <span class="random">Meal of the Day</span>
+                         ${
+                        random?`<span class="random">Meal of the Day</span>`:""
+                        }
                         <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}">
                     </div>
                     <div class="meal-body">
