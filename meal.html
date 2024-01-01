@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Meals Website</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script type="text/javascript" src="meal.js" defer></script>
+    </head>
+    <body">
+        <div class="store">
+            <div class="row">
+                <div class="search-box">
+                    <input type="text" placeholder="Search for your fav meal" id="search-term">
+                    <button id="search"><i class="fas fa-search"></i> </button>
+                </div>
+            </div>
+            <div class="favorites-section">
+                <h3>Favorites</h3>
+                    <ul class="favorites">
+                        <li><img id="fav-img" src="https://www.themealdb.com/images/ingredients/Lime.png" alt="">
+                            <span>Item 1</span>
+                            <button class="clear"><i class="fas fa-window-close"></i></button>
+                        </li>
+                        <li><img id="fav-img" src="https://www.themealdb.com/images/ingredients/Lime.png" alt="">
+                            <span>Item 2</span>
+                            <button class="clear"><i class="fas fa-window-close"></i></button>
+                        </li>
+                    </ul>
+            </div>
+            <div class="meals" id="meals">
+            
+                <div class="meal-header">
+                        <span class="random">Meal of the Day</span>
+                        <img src="https://www.themealdb.com/images/ingredients/Lime.png" alt="">
+                </div>
+                <div class="meal-body">
+                    <h3>Meal Name</h3>
+                    <button class="fav-btn">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            
+            </div>
+        </div>
+    </body>
+</html>

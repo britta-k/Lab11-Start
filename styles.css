@@ -1,0 +1,172 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+/* ------ general formatting ----------- */
+h1{
+    font-size: 36px;
+    font-weight: 600;
+}
+
+p{
+    color: #777;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+
+h3{
+    text-align: center;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+/* ------ General ------------- */
+.row{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.store{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    padding: 50px 0;
+}
+/* --------- Favorit    es ------------ */
+.favorites-section{
+    background-color: rgb(230, 230, 230);
+    flex-direction: row;
+    padding: 1rem;
+    text-align: center;
+    
+}
+.favorites{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.favorites li{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.favorites li .clear{
+    background-color: transparent;
+    position: absolute;
+    top: 0px;
+    left:0px;
+    border: none;
+}
+ 
+.favorites li img{
+    border-radius: 50%;
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+    padding: 5px;
+}
+
+.favorites span{
+    margin: auto;
+    font-size: 0.8rem;
+    width: 75px;
+}
+
+/* --------- Meals ----------------*/
+.meals{
+    width: 100%;
+    margin: auto; 
+    border-radius: 5px;
+    box-shadow: 0 0 10px 2px #333;
+}
+
+.meal-header{
+    position: relative;
+}
+
+.meal-header .random{
+    position: absolute;
+    top:10px;
+    background-color: #fff;
+    padding: 5px;
+}
+
+.meal-header img{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.meal-body{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.meal-body .fav-btn{
+    border: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+    color:lightgray;
+    cursor: pointer;
+   
+}
+
+.meal-body .fav-btn.active{
+    color: red;
+}
+
+.search-box{
+    margin: 10px auto;
+}
+
+/* ---- Meal Info Page ---- */
+.meal-container{ 
+    margin: auto;
+    padding: 50px 0;
+    width: 40%;
+}
+
+.meal-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: antiquewhite;
+    padding: 10px;
+}
+
+.meal-info img{
+    width: 100%;
+}
+.meal-info ul{
+    padding-left: 5%;
+}
+.meal-info h1{
+    text-align: center;
+}
+
+/* ----- Responsive Design ------- */
+@media (max-width: 700px){
+
+    .row{
+        flex-direction: column;
+    }
+
+    .favorites li img{
+        height: 50px;
+        width: 50px;
+    }
+
+    .meal-header img{
+        height: 200px;
+    }
+}
