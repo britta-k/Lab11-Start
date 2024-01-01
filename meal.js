@@ -40,12 +40,35 @@ function addMeal(mealData)
         if(favoriteButton.classList.contains("active"))
         {
             favoriteButton.classList.remove("active");
+            removeMealFromLocalStorage(mealData.idMeal);
         }
         else
         {
             favoriteButton.classList.add("active");
+            addMealToLocalStorage(mealData.idMeal);
         }
     })
     mealsElement.appendChild(meal);
 }
 
+function addMealToLocalStorage(mealId)
+{
+    const mealIds = getMealsFromLocalStorage();
+    //console.log(mealIds);
+    localStorage.setItem("mealIds",JSON.stringify([...mealIds,mealId]));
+}
+
+function removeMealFromLocalStorage(mealId)
+{
+    const mealIds = getMealsFromLocalStorage();
+    localStorage.setItem("mealIds",JSON.stringify(
+        mealIds.filter(id => id!=mealId)
+    ));
+}
+
+function getMealsFromLocalStorage()
+{
+    const mealIds = JSON.parse(localStorage.getItem("mealIds"));
+    
+    return mealIds === null? [] : mealIds;
+}
