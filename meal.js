@@ -8,7 +8,9 @@
 //https://www.themealdb.com/api/json/v1/1/search.php?s=
 
 const mealsElement = document.getElementById("meals");
+const favoritesElement = document.querySelector(".favorites");
 getRandomMeal();
+updateFavoriteMeals();
 
 async function getRandomMeal() 
 {
@@ -47,6 +49,8 @@ function addMeal(mealData)
             favoriteButton.classList.add("active");
             addMealToLocalStorage(mealData.idMeal);
         }
+
+        updateFavoriteMeals();
     })
     mealsElement.appendChild(meal);
 }
@@ -71,4 +75,44 @@ function getMealsFromLocalStorage()
     const mealIds = JSON.parse(localStorage.getItem("mealIds"));
     
     return mealIds === null? [] : mealIds;
+}
+
+async function updateFavoriteMeals()
+{
+    favoritesElement.innerHTML = "";
+    const mealIds = getMealsFromLocalStorage();
+    for(let i = 0; i<mealIds.length; i++)
+    {
+        let tmpMeal = await getMealByID(mealIds[i]);
+        //console.log(tmpMeal);
+        addMealToFavorites(tmpMeal);
+    }
+}
+
+async function getMealByID(id)
+{
+    const resp = await fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + id)
+    const respData = await resp.json(); //converts the json data 
+    const meal = respData.meals[0];
+    //console.log(meal);
+
+    return meal;
+}
+
+function addMealToFavorites(mealData)
+{
+
+    const favoriteMeal = document.createElement("li");
+    favoriteMeal.innerHTML = `
+                <img id="fav-img" 
+                    src="${mealData.strMealThumb}" 
+                    alt="${mealData.strMeal}">
+                <span>${mealData.strMeal}</span>
+                <button class="clear"><i class="fas fa-window-close"></i></button>`;
+    const clearBtn = favoriteMeal.querySelector(".clear");
+    clearBtn.addEventListener("click", ()=>{
+        removeMealFromLocalStorage(mealData.idMeal);
+        updateFavoriteMeals();
+    })
+    favoritesElement.appendChild(favoriteMeal);
 }
